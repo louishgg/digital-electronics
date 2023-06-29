@@ -1,0 +1,57 @@
+\section{Main entity and inputs/outputs}
+
+Here is the main entity of our game:
+
+\begin{minted}{vhdl}
+entity pong is
+    generic(
+        -- Constants
+        SCREEN_WIDTH: integer := 7;
+        SCREEN_HEIGHT: integer := 5;
+        PADDLE_WIDTH: integer := 2;
+        PADDLE_Y: integer := 0;
+        NUMBER_LIVES: integer := 3);
+    Port(
+        -- Input signals
+        CLK_SLOW: in STD_LOGIC;
+        CLK_FAST: in STD_LOGIC;
+
+        MOVE_LEFT: in STD_LOGIC;
+        MOVE_RIGHT: in STD_LOGIC;
+
+        START: in STD_LOGIC;
+
+        -- Output signals
+        LED_ROW: out STD_LOGIC_VECTOR(SCREEN_HEIGHT - 1 downto 0);
+        LED_COL: out STD_LOGIC_VECTOR(SCREEN_WIDTH - 1 downto 0);
+        
+        LED_LIVES: out STD_LOGIC_VECTOR(NUMBER_LIVES - 1 downto 0));
+end pong;
+\end{minted}
+
+\subsection{Constants}
+\begin{itemize}
+        \item[-] \texttt{SCREEN\_WIDTH} : equals to the LED matrix's width (7)
+        
+        \item[-] \texttt{SCREEN\_HEIGHT} : equals to the LED matrix's height (5)
+        
+        \item[-] \texttt{PADDLE\_WIDTH} : the paddle's size has been defined to 2 in this game
+        
+        \item[-] \texttt{PADDLE\_Y} : the paddle stays at the bottom so its position is equal to 0
+        
+        \item[-] \texttt{LIVES} : the number of lives has been chosen to be equal to 3
+\end{itemize}
+\subsection{Inputs}
+\begin{itemize}
+    \item[-] \texttt{CLOCK\_SLOW} : the slowest clock from the CPLD
+    \item[-] \texttt{CLOCK\_FAST} : the fastest clock from the CPLD
+    \item[-]\texttt{MOVE\_LEFT} : button that moves the paddle one LED to the left
+    \item[-] \texttt{MOVE\_RIGHT} : button that moves the paddle one LED to the right
+    \item[-] \texttt{START} : button that starts or restarts the game with 3 lives
+\end{itemize}
+\subsection{Outputs}
+\begin{itemize}
+    \item[-] \texttt{LED\_ROW} : logic vector which contains the lines of the LED matrix
+    \item[-] \texttt{LED\_COL} : logic vector which contains the columns of the LED matrix
+    \item[-] \texttt{LIVES} : logic vector that contains the number of remaining lives
+\end{itemize}
